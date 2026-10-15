@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Channels from './pages/Channels';
+import Contents from './pages/Contents';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/channels" element={<Channels />} />
+        <Route path="/contents" element={<Contents />} />
       </Routes>
     </Router>
   );
