@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Youtube, Instagram, Linkedin, Globe, LogOut } from 'lucide-react';
+import { Plus, Video, Share2, Globe, LogOut } from 'lucide-react';
 
 export default function Channels() {
   const navigate = useNavigate();
@@ -25,11 +25,12 @@ export default function Channels() {
     setIsModalOpen(false);
   };
 
-  const getPlatformIcon = (plat) => {
+const getPlatformIcon = (plat) => {
     switch (plat) {
-      case 'youtube': return <Youtube className="w-6 h-6 text-red-600" />;
-      case 'instagram': return <Instagram className="w-6 h-6 text-pink-600" />;
-      case 'linkedin': return <Linkedin className="w-6 h-6 text-blue-600" />;
+      case 'youtube': return <Video className="w-6 h-6 text-red-600" />;
+      case 'tiktok': return <Share2 className="w-6 h-6 text-slate-800" />;
+      case 'instagram': return <Globe className="w-6 h-6 text-pink-600" />;
+      case 'linkedin': return <Globe className="w-6 h-6 text-blue-600" />;
       default: return <Globe className="w-6 h-6 text-slate-600" />;
     }
   };
