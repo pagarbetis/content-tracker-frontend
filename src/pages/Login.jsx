@@ -6,11 +6,11 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Login data:", { email, password });
-    alert("Login Berhasil!");
-    navigate('/channels');
+    localStorage.setItem('user_role', 'creator'); 
+    localStorage.setItem('user_token', 'mock-jwt-token-xyz');
+    navigate('/dashboard'); 
   };
 
   return (

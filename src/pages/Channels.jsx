@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Plus, Video, Share2, Globe, LogOut } from 'lucide-react';
+import { Plus, Globe } from 'lucide-react';
 
 export default function Channels() {
-  const navigate = useNavigate();
   const [channels, setChannels] = useState([
     { id: 1, platform: 'youtube', handle_name: '@techcreator' },
     { id: 2, platform: 'tiktok', handle_name: '@creatorlife' }
@@ -15,17 +13,13 @@ export default function Channels() {
 
   const handleAddChannel = (e) => {
     e.preventDefault();
-    const newChannel = {
-      id: Date.now(),
-      platform,
-      handle_name: handleName
-    };
+    const newChannel = { id: Date.now(), platform, handle_name: handleName };
     setChannels([...channels, newChannel]);
     setHandleName('');
     setIsModalOpen(false);
   };
 
-const getPlatformIcon = (plat) => {
+  const getPlatformIcon = (plat) => {
     switch (plat) {
       case 'youtube': 
         return (
@@ -59,67 +53,45 @@ const getPlatformIcon = (plat) => {
   };
 
   return (
-    <div className="min-h-screen p-8 bg-slate-50">
-      <div className="max-w-4xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 bg-white border shadow-sm rounded-xl border-slate-100">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-800">Manajemen Channel Kreator</h1>
-            <p className="text-sm text-slate-500">Kelola platform sosial media untuk tracking kontenmu[cite: 3].</p>
-          </div>
-          <div className="flex gap-3">
-            <button 
-              onClick={() => navigate('/contents')}
-              className="px-4 py-2 text-sm font-medium transition rounded-lg text-slate-700 bg-slate-100 hover:bg-slate-200"
-            >
-              Ke Pipeline Konten
-            </button>
-            <button 
-              onClick={() => navigate('/login')}
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-red-600 transition rounded-lg bg-red-50 hover:bg-red-100"
-            >
-              <LogOut className="w-4 h-4" /> Keluar
-            </button>
-          </div>
+    <div className="space-y-6">
+      <div className="flex items-center justify-between p-6 bg-white border shadow-sm rounded-2xl border-slate-200/80">
+        <div>
+          <h1 className="text-xl font-bold text-slate-800">Manajemen Channel Kreator</h1>
+          <p className="mt-1 text-sm text-slate-500">Kelola akun dan platform sosial media terhubung.</p>
         </div>
-
-        {/* List Channel */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {channels.map((ch) => (
-            <div key={ch.id} className="flex items-center justify-between p-6 bg-white border shadow-sm rounded-xl border-slate-100">
-              <div className="flex items-center gap-4">
-                <div className="p-3 rounded-lg bg-slate-50">
-                  {getPlatformIcon(ch.platform)}
-                </div>
-                <div>
-                  <h3 className="font-semibold capitalize text-slate-800">{ch.platform}</h3>
-                  <p className="text-sm text-slate-500">{ch.handle_name}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-
-          {/* Tombol Buka Modal Tambah Channel */}
-          <button 
-            onClick={() => setIsModalOpen(true)}
-            className="flex flex-col items-center justify-center p-6 transition border-2 border-dashed border-slate-300 rounded-xl text-slate-500 hover:border-slate-400 hover:text-slate-600 bg-white/50"
-          >
-            <Plus className="w-6 h-6 mb-2" />
-            <span className="text-sm font-medium">Tambah Channel Baru</span>
-          </button>
-        </div>
+        <button 
+          onClick={() => setIsModalOpen(true)}
+          className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition shadow-md shadow-indigo-600/20"
+        >
+          <Plus className="w-4 h-4" /> Tambah Channel
+        </button>
       </div>
 
-      {/* Modal Tambah Channel */}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        {channels.map((ch) => (
+          <div key={ch.id} className="flex items-center justify-between p-6 bg-white border shadow-sm rounded-2xl border-slate-200/80">
+            <div className="flex items-center gap-4">
+              <div className="p-3 border bg-slate-50 rounded-xl border-slate-100">
+                {getPlatformIcon(ch.platform)}
+              </div>
+              <div>
+                <h3 className="font-bold capitalize text-slate-800">{ch.platform}</h3>
+                <p className="text-xs font-medium text-slate-500">{ch.handle_name}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-          <div className="w-full max-w-md p-6 space-y-4 bg-white rounded-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs">
+          <div className="w-full max-w-md p-6 space-y-4 bg-white shadow-xl rounded-2xl">
             <h3 className="text-lg font-bold text-slate-800">Tambah Saluran Sosmed</h3>
             <form onSubmit={handleAddChannel} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700">Platform</label>
+                <label className="block text-xs font-semibold uppercase text-slate-600">Platform</label>
                 <select 
-                  className="w-full px-3 py-2 mt-1 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500"
+                  className="w-full px-3 py-2 mt-1 text-sm border rounded-xl bg-slate-50"
                   value={platform}
                   onChange={(e) => setPlatform(e.target.value)}
                 >
@@ -130,12 +102,12 @@ const getPlatformIcon = (plat) => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700">Handle Name</label>
+                <label className="block text-xs font-semibold uppercase text-slate-600">Handle Name</label>
                 <input 
                   type="text" 
                   required
-                  placeholder="contoh: @techcreator"
-                  className="w-full px-3 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-slate-500"
+                  placeholder="@techcreator"
+                  className="w-full px-3 py-2 mt-1 text-sm border rounded-xl bg-slate-50"
                   value={handleName}
                   onChange={(e) => setHandleName(e.target.value)}
                 />
@@ -144,13 +116,13 @@ const getPlatformIcon = (plat) => {
                 <button 
                   type="button" 
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 bg-slate-100 hover:bg-slate-200"
+                  className="px-4 py-2 text-xs font-semibold text-slate-600 bg-slate-100 rounded-xl hover:bg-slate-200"
                 >
                   Batal
                 </button>
                 <button 
                   type="submit"
-                  className="px-4 py-2 text-sm font-medium text-white rounded-md bg-slate-900 hover:bg-slate-800"
+                  className="px-4 py-2 text-xs font-semibold text-white bg-indigo-600 rounded-xl hover:bg-indigo-700"
                 >
                   Simpan
                 </button>
