@@ -9,7 +9,7 @@ export default function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     console.log("Login data:", { email, password });
-    alert("Login Berhasil! (Simulasi)");
+    alert("Login Berhasil!");
     navigate('/channels');
   };
 
