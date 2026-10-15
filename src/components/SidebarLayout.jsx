@@ -6,7 +6,6 @@ import {
   FileText, 
   LogOut, 
   ShieldCheck, 
-  Bell, 
   User,
   ChevronRight,
   Menu,
@@ -42,7 +41,6 @@ export default function SidebarLayout() {
       {/* SIDEBAR CLEAN LIGHT ENTERPRISE */}
       <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 text-slate-600 flex flex-col justify-between transition-all duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
         <div>
-          {/* Logo & Brand Header */}
           <div className="flex items-center justify-between h-16 px-6 border-b border-slate-200">
             <div className="flex items-center gap-3">
               <div className="flex items-center justify-center w-8 h-8 text-sm font-bold text-white rounded-lg shadow-xs bg-slate-900">
@@ -58,7 +56,6 @@ export default function SidebarLayout() {
             </button>
           </div>
 
-          {/* Navigasi Links */}
           <div className="p-4 space-y-1">
             <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Platform Nav</p>
             {navItems.map((item) => {
@@ -87,7 +84,6 @@ export default function SidebarLayout() {
           </div>
         </div>
 
-        {/* User Session Profile Footer */}
         <div className="p-4 space-y-3 border-t border-slate-200">
           <div className="flex items-center gap-3 p-3 border rounded-lg bg-slate-50 border-slate-200">
             <div className="flex items-center justify-center text-xs font-bold rounded-md w-7 h-7 bg-slate-200 text-slate-700">
@@ -122,21 +118,14 @@ export default function SidebarLayout() {
             </h2>
           </div>
 
-          {/* Right Action Header */}
-          <div className="flex items-center gap-4">
-            <button className="relative p-2 transition rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-700">
-              <Bell className="w-4 h-4" />
-              <span className="absolute w-2 h-2 rounded-full bg-slate-900 top-2 right-2"></span>
-            </button>
-            <div className="w-px h-4 bg-slate-200"></div>
-            <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-8 h-8 text-xs font-bold text-white rounded-full bg-slate-900">
-                <User className="w-4 h-4" />
-              </div>
-              <div className="hidden text-left sm:block">
-                <p className="text-xs font-bold leading-none text-slate-900">Kriss</p>
-                <p className="text-[10px] text-emerald-600 font-semibold mt-0.5">● Online</p>
-              </div>
+          {/* Right Action Header - HANYA PROFIL */}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-8 h-8 text-xs font-bold text-white rounded-full bg-slate-900">
+              <User className="w-4 h-4" />
+            </div>
+            <div className="hidden text-left sm:block">
+              <p className="text-xs font-bold leading-none text-slate-900">Kriss</p>
+              <p className="text-[10px] text-emerald-600 font-semibold mt-0.5">● Online</p>
             </div>
           </div>
         </header>
